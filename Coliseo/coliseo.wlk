@@ -128,50 +128,16 @@ class GrupoGladiadores{
   method campeon() {
     return miembros.filter({miembro => miembro.vida() > 0}).max({miembro => miembro.fuerza()})
   }
-
-  method combateEntreGrupos(adversario) {
-    3.times{
-      self.campeon().pelea(adversario.campeon())
-    }
-    self.agregarPelea()
-    adversario.agregarPelea()
-  }
 }
 
 object coliseo {
-  /*const gruposCombatientes1 = []
-  const gruposCombatientes2 = []
-  const grupoResultante =[]
 
-  method agregarGrupoABloque1(grupo) {
-    gruposCombatientes1.add(grupo)
-  }
-
-  method agregarGrupoABloque2(grupo) {
-    gruposCombatientes2.add(grupo)
-  }
-
-  method apareoDeListas() {
-    
-  }*/
-
-  /*method combateEntreGrupos(grupo1, grupo2) {
+  method combate(grupo, adversario) {
     3.times{
-      grupo1.campeon().pelea(grupo2.campeon())
-    }
-    grupo1.agregarPelea()
-    grupo2.agregarPelea()
-  }*/
-
-  method combateEntreVariosGrupos() {
-    
-  }
-
-  method combateAfano(grupo, solitario) {
-    3.times{
-      grupo.forEach({gladiador => solitario.pelea(gladiador)})
+      grupo.campeon().pelea(adversario.campeon())
     }
     grupo.agregarPelea()
+    adversario.agregarPelea()
   }
 
   method curarGrupo(grupoGladiadores) {
@@ -180,5 +146,14 @@ object coliseo {
 
   method curarGladiador(gladiador) {
     gladiador.vida(100)
+  }
+
+  // Codigo de un combate en donde cada miembro de un grupo pelea contra un solo gladiador
+
+  method combateAfano(grupo, solitario) {
+    3.times{
+      grupo.forEach({gladiador => solitario.pelea(gladiador)})
+    }
+    grupo.agregarPelea()
   }
 }
